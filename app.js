@@ -13,9 +13,12 @@ var app = express()
 // parse cookies
 app.use(cookieParser())
 
+app.set('view engine', 'pug');
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+    res.render('index', { title: 'Hey', message: 'Hello there!'});
+  });
+
 app.get('/form', csrfProtection, function(req, res) {
   // generate and pass the csrfToken to the view
   res.render('send', { csrfToken: req.csrfToken() })
